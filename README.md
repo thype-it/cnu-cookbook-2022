@@ -128,3 +128,88 @@ Types are derived from the API results, some field might be missing!
 - Method: **DELETE**
 - Deletes existing recipe
 - Returns: 200 OK
+
+
+### EMAIL ZADANIE TEXT
+
+Zadanie domacej ulohy - Povinna cast
+
+ 
+
+RecipeEdit - vytvorit formular pre editaciu receptu
+
+snazte sa mysliet komponentovo ako sme si to ukazali na workshope (napr. RecipeList atd.)
+ako vyzeraju data si mozete pozriet tu https://exercise.cngroup.dk/api/recipes, pripadne priamo cez URL. https://exercise.cngroup.dk/api/recipes/kure-na-paprice
+ingrediencie su zlozitejsia zalezitost (pridanie/odobratia do/z array), rozhodne sa na tom nezaseknite a urobte vsetko ostatne (povinne)
+API je pripravene tak ze ak nastavite hodnoty tym properties, ktore mu poslete (tzn. ak mu v POST na "/recipes/:slug" poslete iba { title: ‘New Title’ }, tak sa nastavi len title a ostane ostanu rovnake 
+ako sme spominali bolo by vhodne si vybrat jeden recept ktory budete editovat (resp testovat na nom) aby ste si navzajom nemenili data
+ak by vam dosli pouzitelne recepty, tak databaza sa obnovuje kazdy den rano
+ 
+
+RecipeList
+
+upravit cas na hodiny a minuty
+zobrazit side dish 
+klikatelny cely item v liste
+ 
+
+RecipeDetail
+
+vypis ingrediencii (mysliet komponentovo) 
+vypis directions (pozrite si index parameter v metode map)
+ 
+
+Nepovinne
+
+Zoradenie receptov v zozname podla casu (preparationTime). 
+Ak sa vam podari urobit editaciu ingrediencii tak mozete dorobit moznost radenia drag'n'drop (viz https://exercise.cngroup.dk/recept/babovka/upravit)
+V detaile je taktiez mozne menit pocet porcii a na zaklade toho preratat mnozstvo pre jednotlive ingrediencie (viz https://exercise.cngroup.dk/recept/chilli-con-carne-rychle)
+Kreativite sa medze nekladu takze ak budete chciet dorobit nieco vlastne kludne to tam pridajte.
+ 
+
+ 
+
+Všetky údaje o receptoch sa získavajú z rozhrania API.
+
+Dostupné API na https://exercise.cngroup.dk/api:
+
+GET /recipes – recipe list
+GET /recipes/:slug - recipe detail
+POST /recipes - create recipe
+POST /recipes/:slug - update recipe
+DELETE /recipes/:slug – delete recipe
+GET /recipes/ingredients – ingredient list
+GET /recipes/side-dishes – side dish list
+ 
+
+Ak si potrebujete vyskúšať tieto API endpointy odporúčame použiť https://www.postman.com/  
+
+ 
+
+Inšpiráciu nájdete na stránke https://exercise.cngroup.dk/. Vaším cieľom nie je pokryť všetky funkcie za každú cenu. Referenčná aplikácia je len príkladom toho, ako by mohol vyzerať výsledok. Predstavivosti a kreativite sa medze nekladú! Na návrh aplikácie môžete použiť predinštalované knižnice Reactstrap alebo si môžete vytvoriť návrh s vlastnými komponentmi CSS a komponentmi - je to len na Vás.
+
+ 
+
+Svoju aplikáciu môžete odoslať dvoma spôsobmi:
+
+- Zabaľte celú aplikáciu do súboru ZIP a pošlite na email belisova@cngroup.dk  so svojím menom bez node_modules.
+
+- Ak máte skúsenosti so systémom Git, vytvorte si úložisko na GitHub, GitLab atď., nahrajte doň svoju aplikáciu a pošlite nám mailom odkaz na úložisko alebo vám môžeme poskytnúť prístup.
+
+ 
+
+DOLEZITA INFORMACIA: Deadline na odovzdanie úlohy je do polnoci 20.4. (20.4.2022 23:59:59). Termin prezentacii bude online 25.4. Bližšie o prezentáciách Vás budeme informovať neskôr.
+
+ 
+
+V prípade, že sa niekde zaseknete kontaktujte kolegov cez slack.
+
+ 
+
+Užitočné odkazy:
+
+- https://beta.reactjs.org/
+
+- https://reactstrap.github.io/
+
+- https://axios-http.com/
