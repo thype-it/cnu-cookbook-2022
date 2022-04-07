@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
-import { Loading } from "../components/helpers/Loading";
 
+//components
+import { Loading } from "../components/helpers/Loading";
+//children
+import { RecipeListItem } from './children/RecipeListItem';
+
+//template
 export function RecipeListPage() {
 
   //states
@@ -21,10 +26,14 @@ export function RecipeListPage() {
     <>
       <h1>Recepty</h1>
 
-      <Loading/>
-
       {loading? <Loading /> : null}
 
+
+      <RecipeListItem recipes={recipes}/>
+
+
+
+      {/* REMOVE CONSOLE LOG */}
       {console.log(recipes)}
     </>
   )
