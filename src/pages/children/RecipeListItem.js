@@ -1,32 +1,48 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardImgOverlay, CardSubtitle, CardTitle } from 'reactstrap';
 
 //asests
 import placeholder from '../../images/food-placeholder.png';
 
-export const RecipeListItem = ({recipes}) => {
+//styles
+const cardStyles = {
+  // background: 'secondary',
+}
+
+const CardTitleStyles = {
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  width: '100%',
+  whiteSpace: 'nowrap'
+}
+
+export const RecipeListItem = ({title, prepTime, sideDish}) => {
   return (
-    <Card>
+    <Card inverse color='dark'>
       <CardImg
         alt="Card image cap"
         src={placeholder}
         top
         width="100%"
       />
-      <CardBody>
-        <CardTitle tag="h5">
-          Card title
+      <CardBody color='primary'>
+        <CardTitle
+          style={CardTitleStyles}
+          tag="h5"
+        >
+          {title}
         </CardTitle>
         <CardSubtitle
           className="mb-2 text-muted"
           tag="h6"
         >
-          Card subtitle
+          {prepTime+ " "}
+          <small>
+            {sideDish? sideDish: null}
+          </small>
         </CardSubtitle>
-        <CardText>
-          This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-        </CardText>
       </CardBody>
     </Card>
   )
 }
+

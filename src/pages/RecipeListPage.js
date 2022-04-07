@@ -4,7 +4,7 @@ import { api } from "../api";
 //components
 import { Loading } from "../components/helpers/Loading";
 //children
-import { RecipeListItem } from './children/RecipeListItem';
+import { RecipeList } from "./children/RecipeList";
 
 //template
 export function RecipeListPage() {
@@ -26,13 +26,14 @@ export function RecipeListPage() {
     <>
       <h1>Recepty</h1>
 
-      {loading? <Loading /> : null}
+      {loading? <Loading /> : (
 
 
-      <RecipeListItem recipes={recipes}/>
+      <RecipeList recipes={recipes}/>
 
 
 
+      ) }
       {/* REMOVE CONSOLE LOG */}
       {console.log(recipes)}
     </>
