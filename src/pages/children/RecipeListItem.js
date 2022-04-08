@@ -1,8 +1,11 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardSubtitle, CardTitle, Col, Row } from 'reactstrap';
 
 //asests
 import placeholder from '../../images/food-placeholder.png';
+
+//components
+import { IconsRow } from '../../components/helpers/IconsRow';
 
 //styles
 const CardTitleStyles = {
@@ -25,12 +28,10 @@ export const RecipeListItem = ({title, prepTime, sideDish}) => {
         <CardTitle style={CardTitleStyles} tag="h5">
           {title}
         </CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
-          {prepTime+ " "}
-          <small>
-            {sideDish? sideDish: null}
-          </small>
-        </CardSubtitle>
+        <IconsRow content={[
+          [prepTime, 'time'],
+          [sideDish, 'sideDish']
+        ]}/>
       </CardBody>
     </Card>
   )
