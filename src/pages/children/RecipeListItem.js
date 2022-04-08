@@ -1,14 +1,10 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardImgOverlay, CardSubtitle, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardImg, CardSubtitle, CardTitle } from 'reactstrap';
 
 //asests
 import placeholder from '../../images/food-placeholder.png';
 
 //styles
-const cardStyles = {
-  // background: 'secondary',
-}
-
 const CardTitleStyles = {
   textOverflow: 'ellipsis',
   overflow: 'hidden',
@@ -26,16 +22,10 @@ export const RecipeListItem = ({title, prepTime, sideDish}) => {
         width="100%"
       />
       <CardBody color='primary'>
-        <CardTitle
-          style={CardTitleStyles}
-          tag="h5"
-        >
+        <CardTitle style={CardTitleStyles} tag="h5">
           {title}
         </CardTitle>
-        <CardSubtitle
-          className="mb-2 text-muted"
-          tag="h6"
-        >
+        <CardSubtitle className="mb-2 text-muted" tag="h6">
           {prepTime+ " "}
           <small>
             {sideDish? sideDish: null}

@@ -4,6 +4,7 @@ import { api } from "../api";
 //components
 import { Loading } from "../components/helpers/Loading";
 import { Error } from "../components/helpers/Error";
+import { SubHeader } from "../components/general/SubHeader";
 //children
 import { RecipeList } from "./children/RecipeList";
 
@@ -26,7 +27,7 @@ export function RecipeListPage() {
 
   return (
     <>
-      <h1>Recepty</h1>
+      <SubHeader heading='Recepty' itemsCount={recipes.length}/>
 
       {error? <Error/> : null}
       {loading? <Loading /> : (
@@ -40,7 +41,7 @@ export function RecipeListPage() {
       ) }
 
       {/* REMOVE CONSOLE LOG */}
-      {console.log(recipes)}
+      {console.log(recipes.length)}
     </>
   )
 }
