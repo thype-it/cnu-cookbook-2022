@@ -7,6 +7,8 @@ import { Loading } from "../components/helpers/Loading";
 import { Error } from "../components/helpers/Error";
 import { SubHeader } from "../components/general/SubHeader";
 import { ButtonList } from "../components/helpers/ButtonList";
+import { IconsRow } from "../components/helpers/IconsRow";
+import { RecipeDetail } from "./children/RecipeDetail";
 
 
 //template
@@ -35,13 +37,13 @@ export function RecipeDetailPage() {
       <SubHeader heading={recipe.title}>
         <ButtonList Edit Delete/>
       </SubHeader>
+      <IconsRow content={[
+          [recipe.preparationTime, 'time'],
+          [recipe.sideDish, 'sideDish']
+      ]}/>
       {error? <Error/> : null}
       {loading? <Loading /> : (
-
-        <p>d</p>
-
-
-
+        <RecipeDetail recipe={recipe}/>
       )}
 
     </>
