@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { BiDish } from 'react-icons/bi';
+import { GoPrimitiveDot } from 'react-icons/go'
 
 //set general icon size
 const iconsSize = 23;
@@ -30,13 +31,12 @@ export const IconsRow = ({content}) => {
       <Col className='d-flex align-items-center'>
         {[...content].map((item, i) =>
           item[0] &&
-          <>
-            {i > 0 && <small>.</small>}
+          <div key={i}>
+            {i > 0 && <GoPrimitiveDot/>}
             <IconText key={i} content={item[0]} icon={item[1]}/>
-          </>
+          </div>
         )}
       </Col>
-      {/* {content.length > 0 && '.'} */}
     </Row>
   )
 }

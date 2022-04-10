@@ -1,5 +1,8 @@
-import React from 'react'
-import { Col, Row } from 'reactstrap'
+import React from 'react';
+import { Col, Row } from 'reactstrap';
+
+//components
+import { ButtonList } from '../helpers/ButtonList';
 
 export const SubHeader = ({heading, itemsCount}) => {
   return (
@@ -15,8 +18,8 @@ export const SubHeader = ({heading, itemsCount}) => {
           </Col>
         </Row>
       </Col>
-      <Col xs='auto'>
-        <p>dsd</p>
+      <Col xs='auto' >
+        <ButtonList NewRecipe/>
       </Col>
     </Row>
 

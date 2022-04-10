@@ -27,7 +27,11 @@ export function RecipeListPage() {
 
   return (
     <>
-      <SubHeader heading='Recepty' itemsCount={recipes.length}/>
+      <SubHeader
+        heading='Recepty'
+        itemsCount={recipes.length}
+        buttons = 'newRecipe'
+      />
 
       {error? <Error/> : null}
       {loading? <Loading /> : (
@@ -39,9 +43,6 @@ export function RecipeListPage() {
 
 
       ) }
-
-      {/* REMOVE CONSOLE LOG */}
-      {console.log(recipes.length)}
     </>
   )
 }
