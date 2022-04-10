@@ -13,13 +13,26 @@ const iconTypes = new Map([
   ['sideDish', <BiDish size={iconsSize}/>]
 ]);
 
-//styles
+//styles //doplnit responzivne spravanie
 const textStyles = {
 
 }
 
+//time convert function
+const timeConvert = (n) => {
+  let hours = (n / 60);
+  let rhours = Math.floor(hours);
+  let minutes = (hours - rhours) * 60;
+  let rminutes = Math.round(minutes);
+  return (
+    (rhours? rhours + "h " : "") +
+    (rminutes? rminutes + "m" : "")
+  );
+}
+
 //icon with text
 const IconText = ({content, icon}) => {
+  if (icon === 'time') content = timeConvert(content);
   return (
     <>{iconTypes.get(icon)} <small style={textStyles}>{content}</small></>
   )

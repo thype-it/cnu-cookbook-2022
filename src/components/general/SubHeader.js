@@ -4,9 +4,8 @@ import { Col, Row } from 'reactstrap';
 //components
 import { ButtonList } from '../helpers/ButtonList';
 
-export const SubHeader = ({heading, itemsCount}) => {
+export const SubHeader = ({children, heading, itemsCount}) => {
   return (
-
     <Row className='justify-content-between align-items-center sticky-top bg-light'>
       <Col xs='auto'>
         <Row className='align-items-end'>
@@ -19,9 +18,8 @@ export const SubHeader = ({heading, itemsCount}) => {
         </Row>
       </Col>
       <Col xs='auto' >
-        <ButtonList NewRecipe/>
+        {children}
       </Col>
     </Row>
-
   )
 }

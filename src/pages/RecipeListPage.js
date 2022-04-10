@@ -5,6 +5,7 @@ import { api } from "../api";
 import { Loading } from "../components/helpers/Loading";
 import { Error } from "../components/helpers/Error";
 import { SubHeader } from "../components/general/SubHeader";
+import { ButtonList } from "../components/helpers/ButtonList";
 //children
 import { RecipeList } from "./children/RecipeList";
 
@@ -27,16 +28,14 @@ export function RecipeListPage() {
 
   return (
     <>
-      <SubHeader
-        heading='Recepty'
-        itemsCount={recipes.length}
-        buttons = 'newRecipe'
-      />
+      <SubHeader heading='Recept'>
+        <ButtonList NewRecipe />
+      </SubHeader>
 
       {error? <Error/> : null}
       {loading? <Loading /> : (
 
-        <RecipeList recipes={recipes}/>
+      <RecipeList recipes={recipes}/>
 
 
 

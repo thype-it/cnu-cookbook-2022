@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 //components
 import { Loading } from "../components/helpers/Loading";
 import { Error } from "../components/helpers/Error";
+import { SubHeader } from "../components/general/SubHeader";
+import { ButtonList } from "../components/helpers/ButtonList";
 
 
 //template
@@ -30,10 +32,13 @@ export function RecipeDetailPage() {
 
   return (
     <>
+      <SubHeader heading={recipe.title}>
+        <ButtonList Edit Delete/>
+      </SubHeader>
       {error? <Error/> : null}
       {loading? <Loading /> : (
 
-        <h1>recipe</h1>
+        <p>d</p>
 
 
 
