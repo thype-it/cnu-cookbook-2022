@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import ReactMarkDown from 'react-markdown';
 
-export const RecipeDetailProcess = () => {
+export const RecipeDetailProcess = ({process}) => {
   return (
-    <div>RecipeDetailProcess</div>
+    <>
+      <ReactMarkDown>{process}</ReactMarkDown>
+    </>
   )
 }

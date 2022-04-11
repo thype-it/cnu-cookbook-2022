@@ -12,7 +12,7 @@ export const RecipeDetail = ({recipe}) => {
         <RecipeDetailIngredients ingredients={recipe.ingredients} servings={recipe.servingCount}/>
       </Col>
       <Col>
-        <RecipeDetailProcess/>
+        <RecipeDetailProcess process={recipe.directions}/>
       </Col>
     </Row>
   )
