@@ -9,7 +9,7 @@ export const RecipeDetail = ({recipe}) => {
   return (
     <Row>
       <Col>
-        <RecipeDetailIngredients ingredients={recipe.ingredients}/>
+        <RecipeDetailIngredients ingredients={recipe.ingredients} servings={recipe.servingCount}/>
       </Col>
       <Col>
         <RecipeDetailProcess/>
