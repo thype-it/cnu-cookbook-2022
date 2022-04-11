@@ -6,7 +6,6 @@ import { RecipeDetailIngredients } from './RecipeDetailIngredients';
 import { RecipeDetailProcess } from './RecipeDetailProcess';
 
 export const RecipeDetail = ({recipe}) => {
-  console.log(recipe);
   return (
     <Row>
       <Col>
