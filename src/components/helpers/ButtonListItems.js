@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { GiKnifeFork } from 'react-icons/gi';
 import { AiOutlineSave, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { Alert, Button } from 'reactstrap';
@@ -25,9 +25,14 @@ export const Edit = () => {
     </Button>
   )
 }
-export const Delete = () => {
+export const Delete = ({onDelete}) => {
+
+  const handleClick = () => {
+    onDelete(true);
+  }
+
   return (
-    <Button color='danger' outline>
+    <Button color='danger' outline onClick={handleClick}>
       <AiOutlineDelete/> odstrániť
     </Button>
   )
