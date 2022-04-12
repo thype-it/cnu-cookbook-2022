@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../api";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -39,11 +39,9 @@ export function RecipeDetailPage() {
 
   //delete recipe from api
   if (isDelete) {
-
     api.delete(`/recipes/${recipe._id}`)
     .then(navigate('/', {state: {delete: true}}))
-    .catch(console.log('i did not delete'))
-
+    .catch((error) => setError(error))
   }
 
 

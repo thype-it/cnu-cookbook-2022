@@ -5,13 +5,21 @@ import { Alert, Container } from 'reactstrap';
 export const Alerts = () => {
 
   const location = useLocation();
+  console.log(location.state);
 
-  const [alertActive, setAlertActive] = useState(location.state.delete);
-  useEffect(() => {
-    setTimeout(() => {
-      setAlertActive(false)
-    }, 6000)
-  }, []);
+  const [wasDeleted, setWasDeleted] = useState(false);
+
+  useEffect( () => {
+    setWasDeleted(location.state?.delete)
+    if (wasDeleted) {
+      setTimeout(() => {
+        setWasDeleted(false);
+        // location.state.delete = false;
+        console.log(location.state);
+      }, 6000)
+    }
+  }, [location.state, wasDeleted])
+
 
   const styles = {
     position: 'fixed',
@@ -22,11 +30,10 @@ export const Alerts = () => {
     textAlign: 'center'
   }
 
-
   return (
     <div style={styles}>
       <Container>
-        {location.state.delete? <Alert isOpen={alertActive} >
+        {wasDeleted? <Alert isOpen={wasDeleted} >
           Recept bol uspešne odtránený
         </Alert>: null}
       </Container>
