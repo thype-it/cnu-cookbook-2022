@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { GiKnifeFork } from 'react-icons/gi';
 import { AiOutlineSave, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import { Alert, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 
 export const NewRecipe = () => {

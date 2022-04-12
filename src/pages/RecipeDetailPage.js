@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { api } from "../api";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 //components
 import { Loading } from "../components/helpers/Loading";
@@ -24,8 +23,8 @@ export function RecipeDetailPage() {
   const [isDelete, setDelete] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  //slug
   const { slug } = useParams();
+  const navigate = useNavigate();
 
   //load recipe from api
   useEffect( () => {
@@ -42,7 +41,7 @@ export function RecipeDetailPage() {
   if (isDelete) {
 
     api.delete(`/recipes/${recipe._id}`)
-    .then()
+    .then(navigate('/', {state: {delete: true}}))
     .catch(console.log('i did not delete'))
 
   }
