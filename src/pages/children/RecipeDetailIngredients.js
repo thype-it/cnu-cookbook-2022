@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Input, Row, Table } from 'reactstrap';
 
-export const RecipeDetailIngredients = ({ingredients, servings}) => {
+export const RecipeDetailIngredients = ({ingredients, servings = 1}) => {
 
   const [amount, setAmount] = useState(servings);
   const handleServings = (e) => {
@@ -32,7 +32,7 @@ export const RecipeDetailIngredients = ({ingredients, servings}) => {
                   <span>{item.name}</span>
                 </th>:
                 <>
-                  <td>{item.amount && ((item.amount / servings) * amount)}</td>
+                  <td>{item.amount && Number(((item.amount / servings) * amount).toFixed(2))}</td>
                   <td>{item.amountUnit}</td>
                   {item.isGroup? null : <td>{item.name}</td>}
                 </>}

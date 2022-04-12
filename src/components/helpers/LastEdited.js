@@ -5,7 +5,7 @@ export const LastEdited = ({date}) => {
   return (
     <>
       <span>Naposledy upravené: </span>
-      <p>{editDate.getMonth()+'. ' + (editDate.getDate()+1) + '. '+editDate.getFullYear()}</p>
+      <p>{editDate.getDate()+'. ' + (editDate.getMonth()+1) + '. '+editDate.getFullYear()}</p>
     </>
   )
 }

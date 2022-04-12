@@ -19,6 +19,8 @@ export function RecipeDetailPage() {
   const [error, setError] = useState(false);
   const [recipe, setRecipe] = useState([]);
 
+  const [isDelete, setDelete] = useState(false);
+
   const { slug } = useParams();
 
   //load recipe from api
@@ -32,6 +34,16 @@ export function RecipeDetailPage() {
     });
   }, [slug])
 
+  //delete recipe from api
+  if (isDelete) {
+
+
+    // api.delete(`/recipes/${slug}`);
+
+  }
+
+  console.log(recipe._id);
+
   return (
     <>
       <SubHeader heading={recipe.title}>
@@ -42,10 +54,9 @@ export function RecipeDetailPage() {
           [recipe.sideDish, 'sideDish']
       ]}/>
       {error? <Error/> : null}
-      {loading? <Loading /> : (
+      {loading? <Loading/> : (
         <RecipeDetail recipe={recipe}/>
       )}
-
     </>
   )
 }

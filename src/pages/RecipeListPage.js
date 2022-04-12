@@ -21,25 +21,20 @@ export function RecipeListPage() {
   useEffect( () => {
     setLoading(true);
     api.get('/recipes')
-    .then( (response) => setRecipes(response.data))
+    .then((response) => setRecipes(response.data))
     .catch((error) => setError(true))
     .finally(() => setLoading(false));
   }, []);
 
   return (
     <>
-      <SubHeader heading='Recept'>
+      <SubHeader heading='Recept' itemsCount={recipes.length}>
         <ButtonList NewRecipe />
       </SubHeader>
-
       {error? <Error/> : null}
       {loading? <Loading /> : (
 
       <RecipeList recipes={recipes}/>
-
-
-
-
 
       ) }
     </>
