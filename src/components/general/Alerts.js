@@ -5,8 +5,6 @@ import { Alert, Container } from 'reactstrap';
 export const Alerts = () => {
 
   const location = useLocation();
-  console.log(location.state);
-
   const [wasDeleted, setWasDeleted] = useState(false);
 
   useEffect( () => {
@@ -14,8 +12,7 @@ export const Alerts = () => {
     if (wasDeleted) {
       setTimeout(() => {
         setWasDeleted(false);
-        // location.state.delete = false;
-        console.log(location.state);
+        location.state.delete = false;
       }, 6000)
     }
   }, [location.state, wasDeleted])
