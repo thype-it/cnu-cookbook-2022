@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Form, FormFeedback, FormGroup, FormText, Input, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { api } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 //components
 import { RecipeFormTitle } from '../form/RecipeFormTitle';
@@ -10,6 +11,8 @@ import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
 
 export const RecipeForm = () => {
+
+  const navigate = useNavigate();
 
   const { handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
@@ -30,7 +33,10 @@ export const RecipeForm = () => {
   const onSubmit = (data) => {
     console.log(data);
     api.post('/recipes', data)
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response);
+      navigate('/', {state:{alert:'newRecipe'}})
+    })
     .catch((error) => console.log(error))
   }
 
