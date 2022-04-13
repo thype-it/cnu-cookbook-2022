@@ -6,14 +6,14 @@ export const Alerts = () => {
 
   const location = useLocation();
   const [wasDeleted, setWasDeleted] = useState(false);
-
+  console.log(location.state);
   useEffect( () => {
     setWasDeleted(location.state?.delete)
     if (wasDeleted) {
       setTimeout(() => {
+        if (location.state) location.state.delete = false;
         setWasDeleted(false);
-        location.state.delete = false;
-      }, 6000)
+      }, 6000);
     }
   }, [location.state, wasDeleted])
 
