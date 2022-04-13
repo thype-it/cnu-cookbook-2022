@@ -19,7 +19,7 @@ export const Alerts = () => {
       setTimeout(()=>{
         setAlert(false);
         setAlertType('');
-      }, 3000)
+      }, 5000)
     }
   }, [location, navigate])
 
