@@ -38,11 +38,13 @@ export function RecipeDetailPage() {
   }, [slug])
 
   //delete recipe from api
-  if (isDelete) {
-    api.delete(`/recipes/${recipe._id}`)
-    .then(navigate('/', {state: {delete: true}}))
-    .catch((error) => setError(error))
-  }
+  useEffect( () => {
+    if (isDelete) {
+      api.delete(`/recipes/${recipe._id}`)
+      .then(navigate('/', {state: {delete: true}}))
+      .catch((error) => setError(error))
+    }
+  }, [isDelete, navigate, recipe._id])
 
 
   //open modal delete window after clicking button in subheader
