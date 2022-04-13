@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Form, FormFeedback, FormGroup, FormText, Input, Row } from 'reactstrap';
-import { useForm, Controller, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { api } from '../../api';
 
 //components
 import { RecipeFormTitle } from '../form/RecipeFormTitle';
@@ -13,21 +14,24 @@ export const RecipeForm = () => {
   const { handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
       title: '', //required field for user
-      preparationTime: Number,
-      servingCount: Number,
-      sideDish: String,
-      directions: String,
+      preparationTime: null,
+      servingCount: null,
+      sideDish: '',
+      directions: '',
       ingredients: [{
-          amount: Number,
-          amountUnit: String,
-          isGroup: Boolean,
-          name: String,
+          amount: null,
+          amountUnit: '',
+          isGroup: null,
+          name: '',
       }]
     }
   });
 
   const onSubmit = (data) => {
     console.log(data);
+    api.post('/recipes', data)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
   }
 
   return (
