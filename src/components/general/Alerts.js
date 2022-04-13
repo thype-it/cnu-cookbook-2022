@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Alert, Container } from 'reactstrap';
 
 export const Alerts = () => {
 
-  const location = useLocation();
-  const [wasDeleted, setWasDeleted] = useState(false);
-  console.log(location.state);
-  useEffect( () => {
-    setWasDeleted(location.state?.delete)
-    if (wasDeleted) {
-      setTimeout(() => {
-        if (location.state) location.state.delete = false;
-        setWasDeleted(false);
-      }, 6000);
-    }
-  }, [location.state, wasDeleted])
+  //states
+  const [isAlert, setAlert] = useState(false);
+  const [alertType, setAlertType] = useState('');
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect( () => {
+    if (location.state) {
+      setAlert(true);
+      setAlertType(location.state.alert);
+      navigate(location.pathname, {});
+      setTimeout(()=>{
+        setAlert(false);
+        setAlertType('');
+      }, 3000)
+    }
+  }, [location, navigate])
 
   const styles = {
     position: 'fixed',
@@ -30,8 +35,14 @@ export const Alerts = () => {
   return (
     <div style={styles}>
       <Container>
-        {wasDeleted? <Alert isOpen={wasDeleted} >
-          Recept bol uspešne odtránený
+        {alertType === 'delete' ? <Alert isOpen={isAlert} >
+          Recept bol úspešne odtránený.
+        </Alert>: null}
+        {alertType === 'newRecipe' ? <Alert isOpen={isAlert} >
+          Recept bol úspešne vytvorený.
+        </Alert>: null}
+        {alertType === 'edit' ? <Alert isOpen={isAlert} >
+          Recept bol úspešne upravený.
         </Alert>: null}
       </Container>
     </div>

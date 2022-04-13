@@ -41,7 +41,7 @@ export function RecipeDetailPage() {
   useEffect( () => {
     if (isDelete) {
       api.delete(`/recipes/${recipe._id}`)
-      .then(navigate('/', {state: {delete: true}}))
+      .then(navigate('/', {state: {alert: 'delete'}}))
       .catch((error) => setError(error))
     }
   }, [isDelete, navigate, recipe._id])
