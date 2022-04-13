@@ -1,7 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Controller } from 'react-hook-form';
+import { FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
 
-export const RecipeFormDirections = () => {
+export const RecipeFormDirections = ({control, errors}) => {
   return (
-    <div>RecipeFormDirections</div>
+    <FormGroup>
+      <Controller
+        name='directions'
+        control={control}
+        render={({ field }) =>
+        <Input
+          type='textarea'
+          rows='20'
+          {...field}
+        />}
+      />
+    </FormGroup>
   )
 }

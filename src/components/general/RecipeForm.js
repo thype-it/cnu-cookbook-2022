@@ -17,8 +17,8 @@ export const RecipeForm = () => {
   const { handleSubmit, control, formState: { errors } } = useForm({
     defaultValues: {
       title: '', //required field for user
-      preparationTime: null,
-      servingCount: null,
+      preparationTime: '',
+      servingCount: '',
       sideDish: '',
       directions: '',
       ingredients: [{
@@ -45,13 +45,15 @@ export const RecipeForm = () => {
       <RecipeFormTitle control={control} errors={errors}/>
       <Row>
         <Col>
-          <RecipeFormBasics/>
+          <h4>Základné údaje</h4>
+          <RecipeFormBasics  control={control} errors={errors}/>
         </Col>
         <Col>
           <RecipeFormIngredients/>
         </Col>
         <Col>
-          <RecipeFormDirections/>
+          <h4>Postup</h4>
+          <RecipeFormDirections control={control} errors={errors}/>
         </Col>
       </Row>
         <input type='submit'/>
