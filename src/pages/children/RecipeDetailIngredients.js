@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Input, Row, Table } from 'reactstrap';
+import { Input, InputGroup, InputGroupText, Table } from 'reactstrap';
 
 export const RecipeDetailIngredients = ({ingredients, servings = 1}) => {
 
@@ -10,19 +10,15 @@ export const RecipeDetailIngredients = ({ingredients, servings = 1}) => {
 
   return (
     <>
-      <Row>
-        <Col>
-          <span>Počet porcií</span>
-        </Col>
-        <Col>
-          <Input
-            type='number'
-            min='1'
-            defaultValue={servings? servings: 1}
-            onChange={handleServings}
-          />
-        </Col>
-      </Row>
+      <InputGroup>
+        <InputGroupText>Počet porcií</InputGroupText>
+        <Input
+          type='number'
+          min='1'
+          defaultValue={servings? servings: 1}
+          onChange={handleServings}
+        />
+      </InputGroup>
       <Table hover responsive>
         <tbody style={{textAlign: 'center'}}>
           {ingredients?.map((item, i)=>
