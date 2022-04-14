@@ -34,8 +34,10 @@ export const RecipeForm = () => {
     console.log(data);
     api.post('/recipes', data)
     .then((response) => {
-      console.log(response);
-      navigate('/', {state:{alert:'newRecipe'}})
+      navigate(
+        `/recipe/${response.data.slug}`,
+        {state:{alert:'newRecipe'}
+      })
     })
     .catch((error) => console.log(error))
   }
