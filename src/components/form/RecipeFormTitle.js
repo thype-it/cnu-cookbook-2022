@@ -21,16 +21,20 @@ export const RecipeFormTitle = ({control, errors, onTitleInput, titleInput}) => 
         }}
         render={({
           field,
-          fieldState:{ invalid, isTouched},
+          formState,
+          fieldState:{ invalid },
         }) =>
           <Input
             id='recipeFormTitle'
             placeholder='povinný údaj'
             {...field}
-            onChange={e => onTitleInput(e.target.value)}
+            onChange={(e)=>{
+              field.onChange(e.target.value)
+              onTitleInput(e.target.value)
+            }}
             value={titleInput}
             invalid={invalid}
-            valid={!invalid && isTouched}
+            valid={!invalid && formState.isSubmitted }
           />}
         />
       <FormFeedback>
