@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Controller } from 'react-hook-form'
 import { FormFeedback, FormGroup, FormText, Input, Label } from 'reactstrap'
 
-export const RecipeFormTitle = ({control, errors}) => {
+export const RecipeFormTitle = ({control, errors, onTitleInput, titleInput}) => {
+
   return (
     <FormGroup>
       <Label for='recipeFormTitle'>
@@ -26,6 +27,8 @@ export const RecipeFormTitle = ({control, errors}) => {
             id='recipeFormTitle'
             placeholder='povinný údaj'
             {...field}
+            onChange={e => onTitleInput(e.target.value)}
+            value={titleInput}
             invalid={invalid}
             valid={!invalid && isTouched}
           />}

@@ -10,7 +10,7 @@ import { RecipeFormBasics } from '../form/RecipeFormBasics';
 import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
 
-export const RecipeForm = () => {
+export const RecipeForm = ({onTitleInput, titleInput}) => {
 
   const navigate = useNavigate();
 
@@ -44,7 +44,12 @@ export const RecipeForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <RecipeFormTitle control={control} errors={errors}/>
+      <RecipeFormTitle
+        control={control}
+        errors={errors}
+        onTitleInput={onTitleInput}
+        titleInput={titleInput}
+      />
       <Row>
         <Col>
           <h4>Základné údaje</h4>
@@ -55,7 +60,7 @@ export const RecipeForm = () => {
         </Col>
         <Col>
           <h4>Postup</h4>
-          <RecipeFormDirections control={control} errors={errors}/>
+          <RecipeFormDirections control={control}/>
         </Col>
       </Row>
         <input type='submit'/>
