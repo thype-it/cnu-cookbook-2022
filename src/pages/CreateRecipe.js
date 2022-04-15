@@ -18,7 +18,7 @@ export const CreateRecipe = () => {
   return (
     <>
       <SubHeader heading={titleInput ? titleInput: 'Nový recept'}>
-        <ButtonList Save/>
+        <ButtonList Save Cancel/>
       </SubHeader>
       <RecipeForm onTitleInput={handleTitleInput} titleInput={titleInput}/>
     </>

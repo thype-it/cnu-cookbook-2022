@@ -1,6 +1,7 @@
 import React from 'react';
 import { GiKnifeFork } from 'react-icons/gi';
 import { AiOutlineSave, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { MdOutlineCancel } from 'react-icons/md'
 import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,6 +51,20 @@ export const Delete = ({onDelete}) => {
   return (
     <Button color='danger' outline onClick={handleClick}>
       <AiOutlineDelete/> odstrániť
+    </Button>
+  )
+}
+
+export const Cancel = () => {
+
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate(-1)
+  }
+
+  return (
+    <Button color='danger' outline onClick={handleClick}>
+      <MdOutlineCancel/> zrušiť
     </Button>
   )
 }
