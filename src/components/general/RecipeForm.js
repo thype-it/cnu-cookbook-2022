@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Col, Form, FormFeedback, FormGroup, FormText, Input, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { api } from '../../api';
@@ -9,12 +9,16 @@ import { RecipeFormTitle } from '../form/RecipeFormTitle';
 import { RecipeFormBasics } from '../form/RecipeFormBasics';
 import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
+import { DraggableList } from './DraggableList';
 
 export const RecipeForm = ({onTitleInput, titleInput}) => {
 
   const navigate = useNavigate();
 
-  const [ingredients, setIngredients] = useState([{}]);
+  //states and refs
+  const [ingredients, setIngredients] = useState(null);
+  const newOrderRef = useRef();
+  const previousOrderRef = useRef();
 
   //registering main form
   const { handleSubmit, control, formState: { errors } } = useForm({
@@ -55,14 +59,30 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
     // .catch((error) => console.log(error))
   }
 
-  //add new ingredient obejct to data on ingredients form submit
+  //keep track if child component changed ordder of ingredients
+  useEffect(()=> {
+    previousOrderRef.current = ingredients;
+  },[ingredients])
+
+  //add new ingredient object to data on ingredients form submit
   const submitIngredients = (data) => {
-    console.log(data);
 
-    setIngredients(ingredients => ingredients.concat(data))
+    //check if user changed order and update data
+    if (newOrderRef.current && newOrderRef.current !== previousOrderRef.current) {
+      setIngredients(newOrderRef.current)
+      newOrderRef.current = null;
+    }
 
-    console.log(ingredients);
-    reset();
+    data.id = "" + Date.now(); //generate id for draggable
+    ingredients? //update ingredietns on submit
+    setIngredients(ingredients => ingredients.concat(data)):
+    setIngredients([data])
+    reset(); //reset form
+  }
+
+  //handle deletion of proposed ingredietns
+  const deleteIngredient = (deleteId) => {
+    setIngredients(ingredients.filter(i => i.id !== deleteId));
   }
 
   //forms template
@@ -82,6 +102,13 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
           </Col>
           <Col>
             <h4>Ingrediencie</h4>
+            {ingredients?
+            <DraggableList
+              contents={ingredients}
+              removeItem={deleteIngredient}
+              ref={newOrderRef}
+            />:
+            <p>este nic</p>}
             <RecipeFormIngredients control={controlIng} reset={reset}/>
           </Col>
           <Col>
