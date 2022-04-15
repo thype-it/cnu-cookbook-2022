@@ -32,6 +32,7 @@ export const RecipeFormTitle = ({control, errors, onTitleInput, titleInput}) => 
               field.onChange(e.target.value)
               onTitleInput(e.target.value)
             }}
+            autoFocus
             value={titleInput}
             invalid={invalid}
             valid={!invalid && formState.isSubmitted }

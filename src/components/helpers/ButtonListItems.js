@@ -21,9 +21,13 @@ export const NewRecipe = () => {
   )
 }
 
-export const Save = () => {
+export const Save = ({form}) => {
   return (
-    <Button color='success' outline>
+    <Button
+      color='success'
+      outline
+      form={form? form: 'formRecipe'}
+    >
       <AiOutlineSave/> uložiť
     </Button>
   )

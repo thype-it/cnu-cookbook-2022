@@ -1,7 +1,9 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { AiFillDelete } from 'react-icons/ai';
+import { Badge, ListGroup, ListGroupItem } from 'reactstrap';
 import { IngredientsListElement } from '../form/IngredientsListElement';
+import { InfoBadge } from '../helpers/InfoBadge';
 
 export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) => {
 
@@ -22,7 +24,14 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
   }
 
   return (
-      <DragDropContext onDragEnd={handleOnDragEnd}>
+    <>
+      <InfoBadge
+        text='Upraviť poradie ingrediencií'
+        classes='mb-3'
+        toolTip
+        toolID='dragToolInfo'
+      />
+      <DragDropContext onDragEnd={handleOnDragEnd} className>
         <Droppable droppableId='ingredients'>
           {(provided) => (
             <div
@@ -45,8 +54,16 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
                         {...provided.dragHandleProps}
                       >
                         <ListGroupItem>
-                          <span onClick={()=>removeItem(id)} >x</span>
-                          <IngredientsListElement contents={rest}/>
+                          <IngredientsListElement contents={rest}>
+                            <AiFillDelete
+                              onClick={()=>removeItem(id)}
+                              size='20'
+                              style={{
+                                color: 'red',
+                                cursor:'pointer',
+                              }}
+                            />
+                          </IngredientsListElement>
                         </ListGroupItem>
                       </div>
                     )}
@@ -59,6 +76,6 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
           )}
         </Droppable>
       </DragDropContext>
-
+    </>
   )
 })

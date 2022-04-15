@@ -18,6 +18,7 @@ export const InfoBadge = ({text, href, classes, toolTip, toolID}) => {
             </span>
             <UncontrolledTooltip
               target={toolID}
+              placement='right'
             >
               Upravte poradie ingredincií systémom Drag and Drop.
               Jednoducho potiahnite jednu z ingredincíí na želanú pozíciu.

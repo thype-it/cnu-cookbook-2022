@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Form, FormFeedback, FormGroup, FormText, Input, Row } from 'reactstrap';
+import { Col, Form, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
@@ -48,15 +48,16 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
 
   //create new recipe on main form submit
   const onSubmit = (data) => {
+    data.ingredients = ingredients;
     console.log(data);
-    // api.post('/recipes', data)
-    // .then((response) => {
-    //   navigate(
-    //     `/recipe/${response.data.slug}`,
-    //     {state:{alert:'newRecipe'}
-    //   })
-    // })
-    // .catch((error) => console.log(error))
+    api.post('/recipes', data)
+    .then((response) => {
+      navigate(
+        `/recipe/${response.data.slug}`,
+        {state:{alert:'newRecipe'}
+      })
+    })
+    .catch((error) => console.log(error))
   }
 
   //keep track if child component changed ordder of ingredients
@@ -88,7 +89,10 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
   //forms template
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        id='formRecipe'
+      >
         <RecipeFormTitle
           control={control}
           errors={errors}
@@ -116,7 +120,6 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
             <RecipeFormDirections control={control}/>
           </Col>
         </Row>
-          <input type='submit'/>
       </Form>
       <Form id='formIngredients' onSubmit={handleSubmitIng(submitIngredients)}></Form>
     </>

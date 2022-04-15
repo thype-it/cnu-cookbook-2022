@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Controller, useFormState } from 'react-hook-form';
 import { Col, Form, FormFeedback, FormGroup, FormText, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
+import { SideSubmit } from '../helpers/SideSubmit';
 
 export const RecipeFormIngredients = ({control}) => {
 
@@ -9,6 +10,7 @@ export const RecipeFormIngredients = ({control}) => {
   return (
     <>
       <Row>
+        <Label>Pridať ingredienciu</Label>
         <Col>
           <FormGroup>
             <Controller
@@ -52,14 +54,7 @@ export const RecipeFormIngredients = ({control}) => {
               form='formIngredients'
             />}
           />
-          <InputGroupText>
-            <input
-              type='submit'
-              form='formIngredients'
-              value='pridaj'
-              disabled={!dirtyFields.name}
-            />
-          </InputGroupText>
+          <SideSubmit form='formIngredients' active={!dirtyFields.name}/>
         </InputGroup>
       </FormGroup>
     </>
