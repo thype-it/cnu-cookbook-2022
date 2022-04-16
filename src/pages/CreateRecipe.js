@@ -32,7 +32,7 @@ export const CreateRecipe = () => {
   return (
     <>
       <SubHeader heading={titleInput ? titleInput: 'Nový recept'}>
-        <ButtonList Save Cancel/>
+        <ButtonList Save CancelHome/>
       </SubHeader>
       <RecipeForm
         defaultValues={defaultValues}

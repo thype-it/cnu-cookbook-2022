@@ -48,7 +48,6 @@ export function RecipeDetailPage() {
     }
   }, [isDelete, navigate, recipe._id])
 
-
   //open modal delete window after clicking button in subheader
   const handleShowDelete = (data) => {
     setShowDeleteModal(data)
@@ -64,11 +63,14 @@ export function RecipeDetailPage() {
     setDelete(data)
   }
 
-
+  // navigate to edit page and pass recipe data
   useEffect(() => {
-    if (isEdit) navigate(`/recipe/${slug}/edit`)
-  }, [isEdit, slug, navigate])
+    if (isEdit && recipe)  {
+      navigate(`/recipe/${slug}/edit`, {state:{recipe: recipe}})
+    }
+  }, [isEdit, slug, navigate, recipe])
 
+  //handle click on edit button
   const handleEdit = (data) => {
     setEdit(data)
   }
