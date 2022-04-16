@@ -58,12 +58,11 @@ export const Delete = ({onDelete}) => {
   )
 }
 
-export const Cancel = ({home}) => {
+export const Cancel = () => {
 
   const navigate = useNavigate()
-  const whereTo = home? '/': -2;
   const handleClick = () => {
-    navigate(whereTo)
+    navigate(-1)
   }
 
   return (

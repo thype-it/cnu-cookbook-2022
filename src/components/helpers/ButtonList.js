@@ -3,7 +3,7 @@ import React from 'react';
 //components
 import * as Buttons from './ButtonListItems';
 
-export const ButtonList = ({Edit, onEdit, NewRecipe, Save, Delete, onDelete, Cancel, CancelHome}) => {
+export const ButtonList = ({Edit, onEdit, NewRecipe, Save, Delete, onDelete, Cancel}) => {
   return (
     <>
       {NewRecipe && <Buttons.NewRecipe/>}
@@ -11,7 +11,6 @@ export const ButtonList = ({Edit, onEdit, NewRecipe, Save, Delete, onDelete, Can
       {Edit && <Buttons.Edit onEdit={onEdit}/>}
       {Delete && <Buttons.Delete onDelete={onDelete}/>}
       {Cancel && <Buttons.Cancel/>}
-      {CancelHome && <Buttons.Cancel home/>}
     </>
   )
 }

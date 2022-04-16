@@ -66,7 +66,7 @@ export function RecipeDetailPage() {
   // navigate to edit page and pass recipe data
   useEffect(() => {
     if (isEdit && recipe)  {
-      navigate(`/recipe/${slug}/edit`, {state:{recipe: recipe}})
+      navigate(`/recipe/${slug}/edit`)
     }
   }, [isEdit, slug, navigate, recipe])
 

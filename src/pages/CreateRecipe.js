@@ -14,28 +14,12 @@ export const CreateRecipe = () => {
     setTitleInput(newTitle);
   }
 
-  const defaultValues = {
-    title: '', //required field for user
-    preparationTime: '',
-    servingCount: '',
-    sideDish: '',
-    directions: '',
-    ingredients: [{
-        amount: '',
-        amountUnit: '',
-        isGroup: false,
-        name: '',
-    }]
-  }
-
-
   return (
     <>
       <SubHeader heading={titleInput ? titleInput: 'Nový recept'}>
-        <ButtonList Save CancelHome/>
+        <ButtonList Save Cancel/>
       </SubHeader>
       <RecipeForm
-        defaultValues={defaultValues}
         onTitleInput={handleTitleInput}
         titleInput={titleInput}
       />

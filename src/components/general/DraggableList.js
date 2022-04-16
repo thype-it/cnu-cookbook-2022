@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AiFillDelete } from 'react-icons/ai';
-import { Badge, ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import { IngredientsListElement } from '../form/IngredientsListElement';
 import { InfoBadge } from '../helpers/InfoBadge';
 
@@ -40,12 +40,12 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
               ref={provided.innerRef}
             >
               <ListGroup>
-              {dragArray.map(({id, ...rest}, i) => {
+              {dragArray.map(({id, _id, ...rest}, i) => {
                 return (
                   <Draggable
-                    key={id}
+                    key={_id? _id: id}
                     index={i}
-                    draggableId={id}
+                    draggableId={_id? _id: id}
                   >
                     {(provided) => (
                       <div
@@ -56,7 +56,7 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
                         <ListGroupItem>
                           <IngredientsListElement contents={rest}>
                             <AiFillDelete
-                              onClick={()=>removeItem(id)}
+                              onClick={()=>removeItem(_id? _id: id)}
                               size='20'
                               style={{
                                 color: 'red',
