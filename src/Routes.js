@@ -12,7 +12,7 @@ export function Routes() {
       <Route index element={<RecipeListPage />} />
       <Route path="/recipe/:slug" element={<RecipeDetailPage />} />
       <Route path='/create' element={<CreateRecipe/>} />
-      <Route path='/edit' element={<EditRecipe/>} />
+      <Route path='/recipe/:slug/edit' element={<EditRecipe/>} />
       <Route path="*" element={<NotFoundPage />} />
     </RouterRoutes>
   );

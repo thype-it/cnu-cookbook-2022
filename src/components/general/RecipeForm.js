@@ -11,7 +11,7 @@ import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
 import { DraggableList } from './DraggableList';
 
-export const RecipeForm = ({onTitleInput, titleInput}) => {
+export const RecipeForm = ({defaultValues, onTitleInput, titleInput}) => {
 
   const navigate = useNavigate();
 
@@ -22,19 +22,7 @@ export const RecipeForm = ({onTitleInput, titleInput}) => {
 
   //registering main form
   const { handleSubmit, control, formState: { errors } } = useForm({
-    defaultValues: {
-      title: '', //required field for user
-      preparationTime: '',
-      servingCount: '',
-      sideDish: '',
-      directions: '',
-      ingredients: [{
-          amount: '',
-          amountUnit: '',
-          isGroup: false,
-          name: '',
-      }]
-    }
+    defaultValues
   });
 
   //registering ingredients form

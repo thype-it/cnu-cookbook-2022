@@ -22,6 +22,8 @@ export function RecipeDetailPage() {
   //states delete
   const [isDelete, setDelete] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  //state ediet
+  const [isEdit, setEdit] = useState(false);
 
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -63,11 +65,23 @@ export function RecipeDetailPage() {
   }
 
 
+  useEffect(() => {
+    if (isEdit) navigate(`/recipe/${slug}/edit`)
+  }, [isEdit, slug, navigate])
+
+  const handleEdit = (data) => {
+    setEdit(data)
+  }
 
   return (
     <>
       <SubHeader heading={recipe.title}>
-        <ButtonList Edit Delete onDelete={handleShowDelete}/>
+        <ButtonList
+          Edit
+          Delete
+          onEdit={handleEdit}
+          onDelete={handleShowDelete}
+        />
       </SubHeader>
       <IconsRow content={[
           [recipe.preparationTime, 'time'],

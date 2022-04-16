@@ -34,9 +34,12 @@ export const Save = ({form}) => {
   )
 }
 
-export const Edit = () => {
+export const Edit = ({onEdit}) => {
+  const handleClick = () => {
+    onEdit(true);
+  }
   return (
-    <Button color='secondary' outline>
+    <Button color='secondary' outline onClick={handleClick}>
       <AiOutlineEdit/> upraviť
     </Button>
   )

@@ -3,12 +3,12 @@ import React from 'react';
 //components
 import * as Buttons from './ButtonListItems';
 
-export const ButtonList = ({Edit, NewRecipe, Save, Delete, onDelete, Cancel}) => {
+export const ButtonList = ({Edit, onEdit, NewRecipe, Save, Delete, onDelete, Cancel}) => {
   return (
     <>
       {NewRecipe && <Buttons.NewRecipe/>}
       {Save && <Buttons.Save/>}
-      {Edit && <Buttons.Edit/>}
+      {Edit && <Buttons.Edit onEdit={onEdit}/>}
       {Delete && <Buttons.Delete onDelete={onDelete}/>}
       {Cancel && <Buttons.Cancel/>}
     </>
