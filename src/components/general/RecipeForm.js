@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Form, Row } from 'reactstrap';
+import { Alert, Col, Form, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
@@ -159,7 +159,7 @@ export const RecipeForm = ({
               removeItem={deleteIngredient}
               ref={newOrderRef}
             />:
-            <p>este nic</p>}
+            <Alert color='primary'>Žiadne ingrediencie</Alert>}
             <RecipeFormIngredients control={controlIng} reset={reset}/>
             <RecipeFormGroup control={controlGroup}/>
           </Col>

@@ -9,7 +9,6 @@ import { RecipeDetailIngredients } from './RecipeDetailIngredients';
 import { RecipeDetailProcess } from './RecipeDetailProcess';
 
 export const RecipeDetail = ({recipe}) => {
-  console.log(recipe.directions);
   return (
     <Row>
       <Col sm='3' >
