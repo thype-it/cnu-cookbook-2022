@@ -99,7 +99,6 @@ export const RecipeForm = ({
       newOrderRef.current = null;
     }
     data._id = "" + Date.now(); //generate id for draggable
-    console.log('more', data);
     ingredients? //update ingredietns on submit
     setIngredients(ingredients => ingredients.concat(data)):
     setIngredients([data]);
