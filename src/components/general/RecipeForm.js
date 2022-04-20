@@ -145,7 +145,7 @@ export const RecipeForm = ({
           titleInput={titleInput}
         />
         <Row>
-          <Col>
+          <Col md='3'>
             <h4>Základné údaje</h4>
             <RecipeFormBasics  control={control} errors={errors}/>
           </Col>
@@ -161,7 +161,7 @@ export const RecipeForm = ({
             <RecipeFormIngredients control={controlIng} reset={reset}/>
             <RecipeFormGroup control={controlGroup}/>
           </Col>
-          <Col>
+          <Col md='5'>
             <h4>Postup</h4>
             <RecipeFormDirections control={control}/>
           </Col>

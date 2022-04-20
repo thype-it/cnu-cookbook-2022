@@ -27,6 +27,7 @@ export const Save = ({form}) => {
     <Button
       color='success'
       outline
+      className='me-1'
       form={form? form: 'formRecipe'}
     >
       <AiOutlineSave/> uložiť
@@ -39,7 +40,12 @@ export const Edit = ({onEdit}) => {
     onEdit(true);
   }
   return (
-    <Button color='secondary' outline onClick={handleClick}>
+    <Button
+      color='secondary'
+      outline
+      onClick={handleClick}
+      className='me-1'
+    >
       <AiOutlineEdit/> upraviť
     </Button>
   )

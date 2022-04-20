@@ -3,7 +3,10 @@ import { Col, Row } from 'reactstrap';
 
 export const SubHeader = ({children, heading, itemsCount}) => {
   return (
-    <Row className='justify-content-between align-items-center sticky-top bg-light'>
+    <Row
+      className='justify-content-between align-items-center sticky-top bg-light mb-4 p-2'
+      style={{boxShadow: '0 0 10px rgba(0,0,0,0.5)', borderRadius: '10px'}}
+    >
       <Col xs='auto'>
         <Row className='align-items-end'>
           <Col>
