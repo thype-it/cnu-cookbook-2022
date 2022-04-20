@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import { Alert, Col, Row } from 'reactstrap';
 
 //components
 import { LastEdited } from '../../components/helpers/LastEdited';
@@ -9,13 +9,27 @@ import { RecipeDetailIngredients } from './RecipeDetailIngredients';
 import { RecipeDetailProcess } from './RecipeDetailProcess';
 
 export const RecipeDetail = ({recipe}) => {
+  console.log(recipe.directions);
   return (
     <Row>
       <Col sm='3' >
-        <RecipeDetailIngredients ingredients={recipe.ingredients} servings={recipe.servingCount}/>
+        {
+          !!recipe.ingredients?.length?
+          <RecipeDetailIngredients ingredients={recipe.ingredients} servings={recipe.servingCount}/>:
+          <Alert color="primary" >
+              Žiadne ingrediencie
+          </Alert>
+        }
+
       </Col>
       <Col>
-        <RecipeDetailProcess process={recipe.directions}/>
+        {
+          recipe.directions?
+          <RecipeDetailProcess process={recipe.directions}/>:
+          <Alert color="primary" >
+            Žiadny postup
+          </Alert>
+        }
         <LastEdited date={recipe.lastModifiedDate}/>
       </Col>
     </Row>
