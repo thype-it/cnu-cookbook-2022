@@ -23,7 +23,6 @@ export const RecipeForm = ({
 
   //states and refs
   const [ingredients, setIngredients] = useState(null);
-  const [originValues, setOriginValues] = useState({});
   const newOrderRef = useRef();
   const previousOrderRef = useRef();
 
@@ -58,11 +57,6 @@ export const RecipeForm = ({
     data.ingredients = ingredients;
     //post edited recipe
     if (recipeId){//check if editing existing recipe
-      const dataArray = Object.entries(data);
-      const filtered = dataArray.filter(([item, value]) =>
-        originValues[item] !== value
-      );
-      const filteredValues = Object.fromEntries(filtered);
       api.post(`/recipes/${recipeId}`, data)
       .then((response) => {
         navigate(
@@ -109,11 +103,9 @@ export const RecipeForm = ({
         setValue(item, value)
       );
       setValue('title', titleInput);
-      setOriginValues(getValues());
     }
     //upload existing ingredients when editing recipe
     if (defaultIngredients){
-      setOriginValues(prevState => ({...prevState, ingredients: defaultIngredients}));
       setIngredients(defaultIngredients);
     }
   }, [definedValues,defaultIngredients, setValue, getValues, titleInput])
