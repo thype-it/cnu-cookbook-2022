@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { Button, ButtonGroup, Col, Input, Label, Row } from 'reactstrap';
 import { api } from '../../api';
 import { RecipeListItem } from '../../pages/children/RecipeListItem';
+import { Loading } from './Loading';
 
 export const SearchRecipes = () => {
 
+  const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [query, setQuery] = useState('');
@@ -13,8 +15,10 @@ export const SearchRecipes = () => {
 
   useEffect( () => {
     if (isSearch)
+    setLoading(true)
     api.get('/recipes')
     .then((response)=> setRecipes(response.data))
+    .finally(() => setLoading(false));
   }, [isSearch])
 
   const handleSearch = (e) => {
@@ -40,25 +44,26 @@ export const SearchRecipes = () => {
 
   return (
     <>
-    <Label>Čas prípravy do</Label>
-    <Row>
-      <ButtonGroup>
-        <Button onClick={()=>filterUnder(15)}>
-          15m
-        </Button>
-        <Button onClick={()=>filterUnder(30)}>
-          30m
-        </Button>
-        <Button onClick={()=>filterUnder(60)}>
-          1h
-        </Button>
-      </ButtonGroup>
-    </Row>
+      <Label>Čas prípravy do</Label>
+      <Row className='mb-2'>
+        <ButtonGroup>
+          <Button onClick={()=>filterUnder(15)}>
+            15m
+          </Button>
+          <Button onClick={()=>filterUnder(30)}>
+            30m
+          </Button>
+          <Button onClick={()=>filterUnder(60)}>
+            1h
+          </Button>
+        </ButtonGroup>
+      </Row>
       <Label>Názov receptu</Label>
       <Input
         className='mb-2'
         onChange={handleSearch}
       />
+      {loading? <Loading /> :
       <Row className='mt-4'>
         {filtered.map((recipe, i) =>
           <Col key={recipe._id} xs='6'className='mb-3'>
@@ -74,7 +79,7 @@ export const SearchRecipes = () => {
             </Link>
           </Col>
         )}
-      </Row>
+      </Row>}
     </>
   )
 }
