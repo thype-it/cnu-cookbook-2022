@@ -25,6 +25,7 @@ export const RecipeForm = ({
 
   //states and refs
   const [ingredients, setIngredients] = useState(null);
+  const [directions, setDirections] = useState('');
   const newOrderRef = useRef();
   const previousOrderRef = useRef();
 
@@ -115,6 +116,7 @@ export const RecipeForm = ({
         setValue(item, value)
       );
       setValue('title', titleInput);
+      definedValues.directions && setDirections(definedValues.directions)
     }
     //upload existing ingredients when editing recipe
     if (defaultIngredients){
@@ -130,6 +132,11 @@ export const RecipeForm = ({
   //handle deletion of proposed ingredietns
   const deleteIngredient = (deleteId) => {
     setIngredients(ingredients.filter(i => i._id !== deleteId));
+  }
+
+  //handle input change of directions
+  const onDirectionsInput = (data) => {
+    setDirections(data)
   }
 
   //forms template
@@ -164,14 +171,18 @@ export const RecipeForm = ({
           </Col>
           <Col md='5'>
             <h4>Postup</h4>
-            <RecipeFormDirections control={control}/>
+            <RecipeFormDirections
+              control={control}
+              value={directions}
+              onDirectionsInput={onDirectionsInput}
+            />
           </Col>
         </Row>
       </Form>
       <Row>
         <Col>
           <h4>Náhľad postupu</h4>
-          <ReactMarkdown></ReactMarkdown>
+          <ReactMarkdown>{directions}</ReactMarkdown>
         </Col>
       </Row>
       <Form id='formIngredients' onSubmit={handleSubmitIng(submitIngredients)}></Form>
