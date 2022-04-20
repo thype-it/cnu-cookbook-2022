@@ -40,12 +40,12 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
               ref={provided.innerRef}
             >
               <ListGroup>
-              {dragArray.map(({id, _id, ...rest}, i) => {
+              {dragArray.map(({_id, ...rest}, i) => {
                 return (
                   <Draggable
-                    key={_id? _id: id}
+                    key={_id}
                     index={i}
-                    draggableId={_id? _id: id}
+                    draggableId={_id}
                   >
                     {(provided) => (
                       <div
@@ -56,7 +56,7 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
                         <ListGroupItem>
                           <IngredientsListElement contents={rest}>
                             <AiFillDelete
-                              onClick={()=>removeItem(_id? _id: id)}
+                              onClick={()=>removeItem(_id)}
                               size='20'
                               style={{
                                 color: 'red',

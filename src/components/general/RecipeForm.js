@@ -56,6 +56,7 @@ export const RecipeForm = ({
   const onSubmit = (data) => {
     //check if user changed order and update data
     data.ingredients = newOrderRef.current? newOrderRef.current: ingredients;
+    data.ingredients.map(item => delete item._id) //remove duplicit id
     //post edited recipe
     if (recipeId){//check if editing existing recipe
       api.post(`/recipes/${recipeId}`, data)
@@ -88,7 +89,7 @@ export const RecipeForm = ({
       setIngredients(newOrderRef.current)
       newOrderRef.current = null;
     }
-    data.id = "" + Date.now(); //generate id for draggable
+    data._id = "" + Date.now(); //generate id for draggable
     data.isGroup = false;
     ingredients? //update ingredietns on submit
     setIngredients(ingredients => ingredients.concat(data)):

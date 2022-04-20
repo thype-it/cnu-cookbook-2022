@@ -51,6 +51,7 @@ export const EditRecipe = () => {
     ];
     if (recipe) {
       setIngredients(recipe.ingredients);
+      console.log(recipe.ingredients);
       const {title} = recipe;
       setTitleInput(title);
       //filtrujeme recipe, tak aby sme posielali len definovane values do children
