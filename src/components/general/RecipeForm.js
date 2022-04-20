@@ -58,9 +58,19 @@ export const RecipeForm = ({
     data.ingredients = ingredients;
     //post edited recipe
     if (recipeId){//check if editing existing recipe
-      console.log(recipeId);
-      console.log(originValues, data);
-      // api.post(`recipes/:${recipeId}`)
+      const dataArray = Object.entries(data);
+      const filtered = dataArray.filter(([item, value]) =>
+        originValues[item] !== value
+      );
+      const filteredValues = Object.fromEntries(filtered);
+      api.post(`/recipes/${recipeId}`, data)
+      .then((response) => {
+        navigate(
+          `/recipe/${response.data.slug}`,
+          {state:{alert:'edit'}
+        })
+      })
+      .catch((error) => console.log(error))
     }
     //create new recipe
     else{
@@ -88,7 +98,6 @@ export const RecipeForm = ({
     ingredients? //update ingredietns on submit
     setIngredients(ingredients => ingredients.concat(data)):
     setIngredients([data]);
-    console.log(ingredients);
     reset(); //reset form
   }
 
@@ -98,15 +107,16 @@ export const RecipeForm = ({
       const recipeArray = Object.entries(definedValues);
       recipeArray.map(([item, value]) =>
         setValue(item, value)
-      )
+      );
+      setValue('title', titleInput);
       setOriginValues(getValues());
-      console.log(originValues, "o");
     }
     //upload existing ingredients when editing recipe
-    setIngredients(defaultIngredients);
-    console.log(defaultIngredients);
-    // setOriginValues(prev => prev.ingredients = in)
-  }, [definedValues,defaultIngredients, setValue, getValues])
+    if (defaultIngredients){
+      setOriginValues(prevState => ({...prevState, ingredients: defaultIngredients}));
+      setIngredients(defaultIngredients);
+    }
+  }, [definedValues,defaultIngredients, setValue, getValues, titleInput])
 
   //keep track if child component changed order of ingredients
   useEffect(()=> {
@@ -117,7 +127,6 @@ export const RecipeForm = ({
   const deleteIngredient = (deleteId) => {
     // --problem pri mazani novych ing pri editacii
     // console.log(deleteId);
-    console.log(ingredients, "ing");
     defaultIngredients? //check if we work with existing recipe
     setIngredients(ingredients.filter(i => i._id !== deleteId)):
     setIngredients(ingredients.filter(i => i.id !== deleteId));
