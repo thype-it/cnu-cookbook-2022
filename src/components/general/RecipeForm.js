@@ -54,7 +54,8 @@ export const RecipeForm = ({
 
   //create or edit recipe on main form submit
   const onSubmit = (data) => {
-    data.ingredients = ingredients;
+    //check if user changed order and update data
+    data.ingredients = newOrderRef.current? newOrderRef.current: ingredients;
     //post edited recipe
     if (recipeId){//check if editing existing recipe
       api.post(`/recipes/${recipeId}`, data)
