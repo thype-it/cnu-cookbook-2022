@@ -15,15 +15,17 @@ const CardTitleStyles = {
   whiteSpace: 'nowrap'
 }
 
-export const RecipeListItem = ({title, prepTime, sideDish}) => {
+export const RecipeListItem = ({title, prepTime, sideDish, noImg}) => {
   return (
     <Card inverse color='dark'>
-      <CardImg
-        alt="Card image cap"
-        src={placeholder}
-        top
-        width="100%"
-      />
+      {noImg? null:
+        <CardImg
+          alt="Card image cap"
+          src={placeholder}
+          top
+          width="100%"
+        />
+      }
       <CardBody color='primary'>
         <CardTitle style={CardTitleStyles} tag="h5">
           {title}

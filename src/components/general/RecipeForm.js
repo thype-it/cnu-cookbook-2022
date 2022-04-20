@@ -3,6 +3,7 @@ import { Alert, Col, Form, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 //components
 import { RecipeFormTitle } from '../form/RecipeFormTitle';
@@ -167,6 +168,12 @@ export const RecipeForm = ({
           </Col>
         </Row>
       </Form>
+      <Row>
+        <Col>
+          <h4>Náhľad postupu</h4>
+          <ReactMarkdown></ReactMarkdown>
+        </Col>
+      </Row>
       <Form id='formIngredients' onSubmit={handleSubmitIng(submitIngredients)}></Form>
       <Form id='formGroup' onSubmit={handleSubmitGroup(submitIngredients)}></Form>
     </>

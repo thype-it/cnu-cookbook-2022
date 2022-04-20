@@ -1,7 +1,6 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import { Badge, Col, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
+import { FormGroup, Input } from 'reactstrap';
 import { InfoBadge } from '../helpers/InfoBadge';
 
 export const RecipeFormDirections = ({control}) => {
