@@ -11,17 +11,24 @@ import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
 import { DraggableList } from './DraggableList';
 
-export const RecipeForm = ({definedValues, defaultIngredients, onTitleInput, titleInput}) => {
+export const RecipeForm = ({
+  recipeId,
+  definedValues,
+  defaultIngredients,
+  onTitleInput,
+  titleInput
+}) => {
 
   const navigate = useNavigate();
 
   //states and refs
   const [ingredients, setIngredients] = useState(null);
+  const [originValues, setOriginValues] = useState({});
   const newOrderRef = useRef();
   const previousOrderRef = useRef();
 
   //registering main form
-  const { handleSubmit, control, formState: { errors }, setValue } = useForm({
+  const { handleSubmit, control, formState: { errors }, setValue, getValues } = useForm({
     defaultValues: {
       title: '', //required field for user
       preparationTime: '',
@@ -46,20 +53,26 @@ export const RecipeForm = ({definedValues, defaultIngredients, onTitleInput, tit
     }
   })
 
-  //create new recipe on main form submit
+  //create or edit recipe on main form submit
   const onSubmit = (data) => {
-    if (definedValues){
-      //post edited recipe
-    }
     data.ingredients = ingredients;
-    api.post('/recipes', data)
-    .then((response) => {
-      navigate(
-        `/recipe/${response.data.slug}`,
-        {state:{alert:'newRecipe'}
+    //post edited recipe
+    if (recipeId){//check if editing existing recipe
+      console.log(recipeId);
+      console.log(originValues, data);
+      // api.post(`recipes/:${recipeId}`)
+    }
+    //create new recipe
+    else{
+      api.post('/recipes', data)
+      .then((response) => {
+        navigate(
+          `/recipe/${response.data.slug}`,
+          {state:{alert:'newRecipe'}
+        })
       })
-    })
-    .catch((error) => console.log(error))
+      .catch((error) => console.log(error))
+    }
   }
 
   //add new ingredient object to data on ingredients form submit
@@ -86,13 +99,14 @@ export const RecipeForm = ({definedValues, defaultIngredients, onTitleInput, tit
       recipeArray.map(([item, value]) =>
         setValue(item, value)
       )
+      setOriginValues(getValues());
+      console.log(originValues, "o");
     }
-  }, [definedValues, setValue])
-
-  //upload existing ingredients when editing recipe
-  useEffect(()=> {
+    //upload existing ingredients when editing recipe
     setIngredients(defaultIngredients);
-  }, [defaultIngredients])
+    console.log(defaultIngredients);
+    // setOriginValues(prev => prev.ingredients = in)
+  }, [definedValues,defaultIngredients, setValue, getValues])
 
   //keep track if child component changed order of ingredients
   useEffect(()=> {
@@ -101,6 +115,11 @@ export const RecipeForm = ({definedValues, defaultIngredients, onTitleInput, tit
 
   //handle deletion of proposed ingredietns
   const deleteIngredient = (deleteId) => {
+    // --problem pri mazani novych ing pri editacii
+    // console.log(deleteId);
+    console.log(ingredients, "ing");
+    defaultIngredients? //check if we work with existing recipe
+    setIngredients(ingredients.filter(i => i._id !== deleteId)):
     setIngredients(ingredients.filter(i => i.id !== deleteId));
   }
 

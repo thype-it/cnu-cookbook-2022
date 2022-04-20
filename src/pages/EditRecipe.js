@@ -72,6 +72,7 @@ export const EditRecipe = () => {
       {loading? <Loading/> : (
         <RecipeForm
           definedValues={definedValues}
+          recipeId={recipe && recipe._id}
           defaultIngredients={ingredients}
           onTitleInput={handleTitleInput}
           titleInput={titleInput}

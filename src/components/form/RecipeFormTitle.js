@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Controller } from 'react-hook-form'
-import { FormFeedback, FormGroup, FormText, Input, Label } from 'reactstrap'
+import { FormFeedback, FormGroup, Input, Label } from 'reactstrap'
 
 export const RecipeFormTitle = ({control, errors, onTitleInput, titleInput}) => {
 
