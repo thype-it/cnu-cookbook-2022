@@ -53,7 +53,7 @@ export const DraggableList = forwardRef(({contents, removeItem}, newOrderRef) =>
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <ListGroupItem color={isGroup && 'dark'}>
+                        <ListGroupItem color={isGroup ? 'dark': null}>
                           <IngredientsListElement contents={rest}>
                             <AiFillDelete
                               onClick={()=>removeItem(_id)}

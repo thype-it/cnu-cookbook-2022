@@ -99,6 +99,7 @@ export const RecipeForm = ({
       newOrderRef.current = null;
     }
     data._id = "" + Date.now(); //generate id for draggable
+    console.log('more', data);
     ingredients? //update ingredietns on submit
     setIngredients(ingredients => ingredients.concat(data)):
     setIngredients([data]);
@@ -128,9 +129,7 @@ export const RecipeForm = ({
 
   //handle deletion of proposed ingredietns
   const deleteIngredient = (deleteId) => {
-    defaultIngredients? //check if we work with existing recipe
-    setIngredients(ingredients.filter(i => i._id !== deleteId)):
-    setIngredients(ingredients.filter(i => i.id !== deleteId));
+    setIngredients(ingredients.filter(i => i._id !== deleteId));
   }
 
   //forms template
