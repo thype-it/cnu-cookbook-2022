@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { RecipeFormTitle } from '../form/RecipeFormTitle';
 import { RecipeFormBasics } from '../form/RecipeFormBasics';
 import { RecipeFormIngredients } from '../form/RecipeFormIngredients';
+import { RecipeFormGroup } from '../form/RecipeFormGroup';
 import { RecipeFormDirections } from '../form/RecipeFormDirections';
 import { DraggableList } from './DraggableList';
 
@@ -48,7 +49,15 @@ export const RecipeForm = ({
     defaultValues: {
       amount: '',
       amountUnit: '',
-      name: ''
+      name: '',
+      isGroup: false
+    }
+  })
+  //registering ingredients group form
+  const { handleSubmit: handleSubmitGroup, control: controlGroup, reset: resetGroup} = useForm({
+    defaultValues: {
+      name: '',
+      isGroup: true
     }
   })
 
@@ -90,11 +99,11 @@ export const RecipeForm = ({
       newOrderRef.current = null;
     }
     data._id = "" + Date.now(); //generate id for draggable
-    data.isGroup = false;
     ingredients? //update ingredietns on submit
     setIngredients(ingredients => ingredients.concat(data)):
     setIngredients([data]);
-    reset(); //reset form
+
+    data.isGroup? resetGroup(): reset(); //reset form
   }
 
   //upload existing values when editing recipe
@@ -119,8 +128,6 @@ export const RecipeForm = ({
 
   //handle deletion of proposed ingredietns
   const deleteIngredient = (deleteId) => {
-    // --problem pri mazani novych ing pri editacii
-    // console.log(deleteId);
     defaultIngredients? //check if we work with existing recipe
     setIngredients(ingredients.filter(i => i._id !== deleteId)):
     setIngredients(ingredients.filter(i => i.id !== deleteId));
@@ -154,6 +161,7 @@ export const RecipeForm = ({
             />:
             <p>este nic</p>}
             <RecipeFormIngredients control={controlIng} reset={reset}/>
+            <RecipeFormGroup control={controlGroup}/>
           </Col>
           <Col>
             <h4>Postup</h4>
@@ -162,6 +170,7 @@ export const RecipeForm = ({
         </Row>
       </Form>
       <Form id='formIngredients' onSubmit={handleSubmitIng(submitIngredients)}></Form>
+      <Form id='formGroup' onSubmit={handleSubmitGroup(submitIngredients)}></Form>
     </>
   )
 }

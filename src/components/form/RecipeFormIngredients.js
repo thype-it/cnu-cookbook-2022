@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller, useFormState } from 'react-hook-form';
-import { Col, Form, FormFeedback, FormGroup, FormText, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
+import { Col, FormGroup, Input, InputGroup, Label, Row } from 'reactstrap';
 import { SideSubmit } from '../helpers/SideSubmit';
 
 export const RecipeFormIngredients = ({control}) => {
